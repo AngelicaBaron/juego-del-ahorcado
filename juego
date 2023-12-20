@@ -1,7 +1,9 @@
+nombre = input("Escribe tu nombre de jugador: ") 
+nombre_mayu = nombre.upper()
 
-print('BIENVENIDO AL JUEGO DEL AHORCADO')
+print('\n ¡BIENVENIDO AL JUEGO DEL AHORCADO, ' + str(nombre_mayu), "!")
 
-print('\n Te dare algunas instrucciones: Debes ingresar una letra, no se permiten caracteres especiales ni números, cada error te costara una vida ... ¡Suerte!')
+print('\n Te dare algunas instrucciones: \n Debes ingresar solo letras, una por una, \n no se permiten caracteres especiales ni números, \n cada error te costara una vida ... ¡Suerte!')
 
 import random
 
@@ -25,29 +27,31 @@ palabras = ['amarillo','azul', 'blanco', 'gris', 'casa', 'cielo', 'claro', 'colo
     'nuevo', 'oro', 'pan', 'pelo', 'piedra', 'piel', 'pluma', 'puerta', 'queso', 'rata',
     'ropa', 'sopa', 'tigre', 'torta', 'vaca', 'viento', 'vino', 'vivir', 'yerba', 'zumo']
 
-carac_esp_num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "º", "\""]
 
 
 palabra_secreta = random.choice(palabras)
 palabra_oculta = "_" * len(palabra_secreta)
+abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o","p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 vidas = 0
 letras_adivinadas = []
 while vidas < 10:
 
 
-    letra = input("\n Ingresa una letra: ")
+    letra= str(input("\n Ingresa una letra: "))
+
+    if letra not in abc:
+      print("No es una letra, !Haz perdido una vida¡")
+
     if letra in letras_adivinadas:
-        print("Ya ingresaste esa letra, ¡intenta otra!")
-    if letra in carac_esp_num:
-        print("Ese es un número o un caracter especial, ingresa una letra")
+      print("Ya ingresaste esa letra, ¡Intenta otra!")
     elif letra in palabra_secreta:
         for i in range(len(palabra_secreta)):
             if palabra_secreta[i] == letra:
                 palabra_oculta = palabra_oculta[:i] + letra + palabra_oculta[i+1:]
-        print("¡Que suerte! Haz adivinado una letra: ", palabra_oculta)
+        print("\n ¡Que suerte! Haz adivinado una letra, aun te quedan: ", 10-vidas,"vidas.", palabra_oculta)
         if "_" not in palabra_oculta:
-            print("¡Felicidades, adivinaste la palabra!")
+            print("\n ¡FELICIDADES, GANASTE EL JUEGO!")
             break
     else:
         vidas += 1

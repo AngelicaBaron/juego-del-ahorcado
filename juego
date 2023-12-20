@@ -1,0 +1,117 @@
+
+print('BIENVENIDO AL JUEGO DEL AHORCADO')
+
+print('\n Te dare algunas instrucciones: Debes ingresar una letra, no se permiten caracteres especiales ni números, cada error te costara una vida ... ¡Suerte!')
+
+import random
+
+palabras = ['amarillo','azul', 'blanco', 'gris', 'casa', 'cielo', 'claro', 'color', 'comida', 'correr',
+    'corto', 'creer', 'cruzar', 'cuadro', 'cuerpo', 'dama', 'dado', 'dulce', 'edad', 'elefante',
+    'empezar', 'encontrar', 'entender', 'escalar', 'escribir', 'espacio', 'esperar', 'estrella', 'estudiar', 'feliz',
+    'flor', 'frutilla', 'fruta', 'fuego', 'gato', 'girar', 'grande', 'gelatina', 'guitarra', 'hablar',
+    'hacer', 'hermano', 'hijo', 'historia', 'hora', 'huevo', 'idea', 'igual', 'jugar', 'largo',
+    'leer', 'libro', 'luz', 'madre', 'mano', 'mar', 'mesa', 'mirar', 'mover', 'mujer',
+    'naranja', 'negro', 'nueve', 'nube', 'ojo', 'oso', 'padre', 'piso', 'palabra', 'papel',
+    'parar', 'paso', 'paz', 'pozo', 'perro', 'pez', 'pie', 'piedra', 'pintar', 'plata',
+    'poder', 'pollo', 'prueba', 'punto', 'querer', 'roto', 'risa', 'reloj', 'rojo', 'rosa',
+    'saber', 'sal', 'saltar', 'sentir', 'ser', 'silla', 'sol', 'sonreir', 'suave', 'subir',
+    'taza', 'termo', 'temprano', 'tiempo', 'tigre', 'tomar', 'toro', 'trabajar', 'tres', 'ver',
+    'verde', 'viaje', 'volar', 'volver', 'zapato', 'zorro', 'abrir', 'aceite', 'agua', 'alto',
+    'amigo', 'animal', 'dinosaurio', 'arena', 'bajo', 'boca', 'brazo', 'cabeza', 'calor', 'cama',
+    'campo', 'carne', 'ciudad', 'clase', 'clave', 'cocina', 'comer', 'copa', 'carro', 'cuerda',
+    'dormir', 'duro', 'escuela', 'familia', 'fiesta', 'flaco', 'fuerza', 'gafas', 'gente', 'gracias',
+    'hambre', 'hombre', 'invierno', 'foto', 'joven', 'juego', 'lago', 'lento', 'libre', 'llave',
+    'lluvia', 'luna', 'madera', 'manzana', 'mariposa', 'mes', 'mono', 'mesa', 'nadar', 'nieve',
+    'nuevo', 'oro', 'pan', 'pelo', 'piedra', 'piel', 'pluma', 'puerta', 'queso', 'rata',
+    'ropa', 'sopa', 'tigre', 'torta', 'vaca', 'viento', 'vino', 'vivir', 'yerba', 'zumo']
+
+carac_esp_num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "º", "\""]
+
+
+palabra_secreta = random.choice(palabras)
+palabra_oculta = "_" * len(palabra_secreta)
+
+vidas = 0
+letras_adivinadas = []
+while vidas < 10:
+
+
+    letra = input("\n Ingresa una letra: ")
+    if letra in letras_adivinadas:
+        print("Ya ingresaste esa letra, ¡intenta otra!")
+    if letra in carac_esp_num:
+        print("Ese es un número o un caracter especial, ingresa una letra")
+    elif letra in palabra_secreta:
+        for i in range(len(palabra_secreta)):
+            if palabra_secreta[i] == letra:
+                palabra_oculta = palabra_oculta[:i] + letra + palabra_oculta[i+1:]
+        print("¡Que suerte! Haz adivinado una letra: ", palabra_oculta)
+        if "_" not in palabra_oculta:
+            print("¡Felicidades, adivinaste la palabra!")
+            break
+    else:
+        vidas += 1
+        print("Letra incorrecta, te quedan", 10-vidas, "vidas.")
+        letras_adivinadas.append(letra)
+        if vidas == 1:
+            print("  |")
+        elif vidas == 2:
+            print("  .-----")
+            print("  |")
+        elif vidas == 3:
+            print("  .-----.")
+            print("  |     | ")
+            print("        |")
+            print("        |")
+            print("        |")
+        elif vidas == 4:
+            print("  .-----.")
+            print("  |     | ")
+            print("        |")
+            print("        |")
+            print("        |")
+            print("      ----")
+        elif vidas == 5:
+            print("  .-----.")
+            print("  |     | ")
+            print("  O     |")
+            print("        |")
+            print("        |")
+            print("      ----")
+        elif vidas == 6:
+            print("  .-----.")
+            print("  |     | ")
+            print("  O     |")
+            print("  |     |")
+            print("        |")
+            print("      ----")
+        elif vidas == 7:
+            print("  .-----.")
+            print("  |     | ")
+            print("  O     |")
+            print(" /|     |")
+            print("        |")
+            print("      ----")
+        elif vidas == 8:
+            print("  .-----.")
+            print("  |     | ")
+            print("  O     |")
+            print(" /|\    |")
+            print("        |")
+            print("      ----")
+        elif vidas == 9:
+            print("  .-----.")
+            print("  |     | ")
+            print("  O     |")
+            print(" /|\    |")
+            print(" /      |")
+            print("      ----")
+        elif vidas == 10:
+            print("  .-----.")
+            print("  |     | ")
+            print("  O     |")
+            print(" /|\    |")
+            print(" / \    |")
+            print("      ----")
+            print("Mala suerte, no atinaste la palabra correcta. La palabra es: ", palabra_secreta)
+            break
